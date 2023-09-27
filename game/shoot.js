@@ -76,8 +76,8 @@ function bullet_collision()
     //collision between bullet and walls
     for (var i = 0; i < player1.bullets.length; i++)
     {
-        console.log(player1.bullets[i].position.x + " " + player1.bullets[i].position.y);
-        console.log(enemy1.position)
+        // console.log(player1.bullets[i].position.x + " " + player1.bullets[i].position.y);
+        // console.log(enemy1.position)
 
         const diffx = Math.abs(player1.bullets[i].position.x - enemy1.position.x);
         const diffy = Math.abs(player1.bullets[i].position.y - enemy1.position.y);
@@ -100,8 +100,8 @@ function bullet_collision()
 
     for (var i = 0; i < enemy1.bullets.length; i++)
     {
-        console.log(enemy1.bullets[i].position.x + " " + enemy1.bullets[i].position.y);
-        console.log(player1.position)
+        // console.log(enemy1.bullets[i].position.x + " " + enemy1.bullets[i].position.y);
+        // console.log(player1.position)
 
         const diffx = Math.abs(enemy1.bullets[i].position.x - player1.position.x);
         const diffy = Math.abs(enemy1.bullets[i].position.y - player1.position.y);

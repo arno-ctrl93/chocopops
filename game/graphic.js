@@ -32,7 +32,7 @@ function init()
     scene.add(enemy1.graphic);
     enemy1.turnRight(1);
 
-    console.log(player1.position.x + " " + player1.position.y);
+    // console.log(player1.position.x + " " + player1.position.y);
 
     light1 = new Light("sun", 0xffffff, "0,0,355");
     scene.add(light1);
@@ -54,9 +54,9 @@ function Ground(color, size_x, size_y, nb_tile)
         for (y = minY; y <= maxY; y = y+sizeOfTileY){
 
             color = colors[Math.floor(Math.random()*colors.length)];
-            console.log("x: " + x + " y: " + y + " color: " + color);
+            // console.log("x: " + x + " y: " + y + " color: " + color);
             if (x === 60 && y === 0){
-                console.log("x: " + x + " y: " + y + " color: " + color);
+                // console.log("x: " + x + " y: " + y + " color: " + color);
                 tmpGround = new THREE.Mesh(
                     new THREE.PlaneGeometry(sizeOfTileX-10, sizeOfTileY-10),
                     new THREE.MeshLambertMaterial({color: 0x00EEEE, transparent: true, opacity: 0.6}));
