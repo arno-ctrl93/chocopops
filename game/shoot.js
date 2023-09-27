@@ -1,4 +1,5 @@
 var bulletTime1 = 0;
+var bulletTime2 = 0;
 
 var bullet_player1_material = new THREE.MeshLambertMaterial(
 {
@@ -14,7 +15,7 @@ var bullet_enemy_material = new THREE.MeshLambertMaterial(
 
 function enemy1shoot()
 {
-    if (bulletTime1 + 0.8 < clock.getElapsedTime())
+    if (bulletTime2 + 0.8 < clock.getElapsedTime())
     {
         bullet = new THREE.Mesh(
             new THREE.SphereGeometry(2),
@@ -24,7 +25,7 @@ function enemy1shoot()
         bullet.position.y = enemy1.position.y + 7.5 * Math.sin(enemy1.direction);
         bullet.angle = enemy1.direction;
         enemy1.bullets.push(bullet);
-        bulletTime1 = clock.getElapsedTime();
+        bulletTime2 = clock.getElapsedTime();
     } 
 
     // move bullets
@@ -85,6 +86,7 @@ function bullet_collision()
             scene.remove(player1.bullets[i]);
             player1.bullets.splice(i, 1);
             i--;
+            enemy1.life = 1;
             enemy1.dead();
         }
         else if (Math.abs(player1.bullets[i].position.x) >= WIDTH / 2 ||
@@ -154,10 +156,10 @@ function player_falling()
         if (element == null)
             continue;
 
-        var tileX = (element) ? element[0] : 0;
-        var tileY = (element) ? element[1] : 0;
-        var mtileX = (element[0] + sizeOfTileX) | 0;
-        var mtileY = (element[1] + sizeOfTileY) | 0;
+        var tileX = (element[0] - sizeOfTileX / 2) | 0;
+        var tileY = (element[1] - sizeOfTileY / 2) | 0;
+        var mtileX = (element[0] + sizeOfTileX / 2) | 0;
+        var mtileY = (element[1] + sizeOfTileY / 2) | 0;
 
         if ((x > tileX)
             && (x < mtileX)
