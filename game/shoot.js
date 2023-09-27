@@ -83,8 +83,11 @@ function player_falling()
     for (var i = 0; i < length; i++) {
         element = noGround[i];
 
-        var tileX = (element[0]) | 0;
-        var tileY = (element[1]) | 0;
+        if (element == null)
+            continue;
+
+        var tileX = (element) ? element[0] : 0;
+        var tileY = (element) ? element[1] : 0;
         var mtileX = (element[0] + sizeOfTileX) | 0;
         var mtileY = (element[1] + sizeOfTileY) | 0;
 
