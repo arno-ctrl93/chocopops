@@ -51,7 +51,7 @@ Player.prototype.displayInfo = function () {
 }
 
 Player.prototype.turnRight = function (angle) {
-    this.direction += angle;
+    this.direction -= angle;
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,-1), +angle);
 };
 
@@ -81,5 +81,5 @@ Player.prototype.move = function () {
     
     light1.position.x = this.position.x;
     light1.position.y = this.position.y;
-    //li ght1.position.z = this.graphic.position.z + 500;
+    //light1.position.z = this.graphic.position.z + 500;
 };
