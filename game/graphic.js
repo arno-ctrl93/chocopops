@@ -30,6 +30,7 @@ function init()
 
     enemy1 = new Player("enemy1", 0xff0000, new THREE.Vector2(0, 0), 0);
     scene.add(enemy1.graphic);
+    enemy1.turnRight(1);
 
     console.log(player1.position.x + " " + player1.position.y);
 
