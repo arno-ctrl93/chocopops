@@ -46,6 +46,38 @@ Player.prototype.decelerate = function (distance) {
     }
 };
 
+Player.prototype.moveAuto = function () {
+    // move on the top until the end of the map and after bootm etc
+    
+    if (this.position.x < -(WIDTH / 2) + 50)
+    {
+        this.accelerate(1);
+        this.turnRight(0.1);
+    }
+    if (this.position.x > (WIDTH / 2) - 50)
+    {
+        this.accelerate(1);
+        this.turnLeft(0.1);
+    }
+    if (this.position.y < -(HEIGHT / 2) + 50)
+    {
+        this.accelerate(1);
+        this.turnLeft(0.1);
+    }
+    if (this.position.y > (HEIGHT / 2) - 50)
+    {
+        this.accelerate(1);
+        this.turnRight(0.1);
+    }
+    else
+    {
+        this.accelerate(1);
+    }
+
+    this.move();
+    
+}
+
 Player.prototype.displayInfo = function () {
     jQuery('#'+this.name+' >.life').text(this.life);
 }

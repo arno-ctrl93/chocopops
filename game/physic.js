@@ -14,5 +14,7 @@ function update()
         player1.decelerate(moveDistance);
 
     player1.move();
+    console.log("Move Auto Enemy")
+    enemy1.moveAuto();
     controls.update();
 }
