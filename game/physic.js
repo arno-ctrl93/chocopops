@@ -14,7 +14,15 @@ function update()
         player1.decelerate(moveDistance);
 
     player1.move();
+    console.log("Enemy Shoot")
+    enemy1shoot();
     console.log("Move Auto Enemy")
     enemy1.moveAuto();
+    //log position and graphic position
+    if (player1.position.x != player1.graphic.position.x || player1.position.y != player1.graphic.position.y){
+        console.log("position and graphic position are not the same");
+        console.log(player1.position.x + " " + player1.position.y);
+        console.log(player1.graphic.position.x + " " + player1.graphic.position.y);
+    }
     controls.update();
 }

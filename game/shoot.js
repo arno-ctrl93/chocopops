@@ -6,6 +6,37 @@ var bullet_player1_material = new THREE.MeshLambertMaterial(
     transparent: false
 });
 
+var bullet_enemy_material = new THREE.MeshLambertMaterial(
+{
+    color: 0xff0000, 
+    transparent: false
+});
+
+function enemy1shoot()
+{
+    if (bulletTime1 + 0.8 < clock.getElapsedTime())
+    {
+        bullet = new THREE.Mesh(
+            new THREE.SphereGeometry(2),
+            bullet_enemy_material);
+        scene.add(bullet);
+        bullet.position.x = enemy1.position.x + 7.5 * Math.cos(enemy1.direction);
+        bullet.position.y = enemy1.position.y + 7.5 * Math.sin(enemy1.direction);
+        bullet.angle = enemy1.direction;
+        enemy1.bullets.push(bullet);
+        bulletTime1 = clock.getElapsedTime();
+    } 
+
+    // move bullets
+    var moveDistance = 5;
+
+    for (var i = 0; i < enemy1.bullets.length; i++)
+    {
+        enemy1.bullets[i].position.x += moveDistance * Math.cos(enemy1.bullets[i].angle);
+        enemy1.bullets[i].position.y += moveDistance * Math.sin(enemy1.bullets[i].angle);
+    }
+}
+
 function shoot()
 {
     if (keyboard.pressed("space") && bulletTime1 + 0.8 < clock.getElapsedTime())
@@ -65,6 +96,29 @@ function bullet_collision()
         }
     }
 
+    for (var i = 0; i < enemy1.bullets.length; i++)
+    {
+        console.log(enemy1.bullets[i].position.x + " " + enemy1.bullets[i].position.y);
+        console.log(player1.position)
+
+        const diffx = Math.abs(enemy1.bullets[i].position.x - player1.position.x);
+        const diffy = Math.abs(enemy1.bullets[i].position.y - player1.position.y);
+
+        if (diffx < 10 && diffy < 10) {
+            scene.remove(enemy1.bullets[i]);
+            enemy1.bullets.splice(i, 1);
+            i--;
+            player1.dead();
+        }
+        else if (Math.abs(enemy1.bullets[i].position.x) >= WIDTH / 2 ||
+            Math.abs(enemy1.bullets[i].position.y) >= HEIGHT / 2)
+        {
+            scene.remove(enemy1.bullets[i]);
+            enemy1.bullets.splice(i, 1);
+            i--;
+        }
+    }
+
 }
 
 function player_collision()
@@ -110,6 +164,10 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
+            player1.position.x = 50;
+            player1.position.y = 0;
+            player1.graphic.position.x = 50;
+            player1.graphic.position.y = 0;
            player1.dead();
         }
     }
